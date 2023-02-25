@@ -44,121 +44,42 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisSize: MainAxisSize.min,
           children: [
             DariXTextButton(
-              onPressed: () async {
-                await Future.delayed(const Duration(milliseconds: 500));
-                print('---- Helloooo!');
-              },
-              buttonText: 'push me!',
-              width: 140,
-            ),
-            const SizedBox(height: 30),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                DariXFilledButton(
-                  onPressed: () async {
-                    await Future.delayed(const Duration(milliseconds: 500));
-                    print('---- Helloooo!');
-                  },
-                  buttonText: 'push me!',
-                  width: 140,
-                  height: 45,
-                ),
-                const SizedBox(width: 30),
-                DariXFilledButton(
-                  onPressed: () async {
-                    await Future.delayed(const Duration(milliseconds: 500));
-                    print('---- Helloooo!');
-                  },
-                  buttonText: 'push me!',
-                  width: 140,
-                  height: 45,
-                  icon: const Icon(Icons.save, size: 22),
-                ),
-              ],
-            ),
-            const SizedBox(height: 30),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                DariXFilledButton(
-                  onPressed: () async {
-                    await Future.delayed(const Duration(milliseconds: 500));
-                    print('---- Helloooo!');
-                  },
-                  buttonText: 'push me!',
-                  width: 140,
-                  height: 45,
-                  isTonal: true,
-                ),
-                const SizedBox(width: 30),
-                DariXFilledButton(
-                  onPressed: () async {
-                    await Future.delayed(const Duration(milliseconds: 500));
-                    print('---- Helloooo!');
-                  },
-                  buttonText: 'push me!',
-                  width: 140,
-                  height: 45,
-                  icon: const Icon(Icons.save, size: 22),
-                  isTonal: true,
-                ),
-              ],
-            ),
-            const SizedBox(height: 30),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                DariXElevatedButton(
-                  onPressed: () async {
-                    await Future.delayed(const Duration(milliseconds: 500));
-                    print('---- Helloooo!');
-                  },
-                  buttonText: 'push me!',
-                  width: 140,
-                  height: 45,
-                ),
-                const SizedBox(width: 30),
-                DariXElevatedButton(
-                  onPressed: () async {
-                    await Future.delayed(const Duration(milliseconds: 500));
-                    print('---- Helloooo!');
-                  },
-                  buttonText: 'push me!',
-                  width: 140,
-                  height: 45,
-                  icon: const Icon(Icons.save, size: 22),
-                ),
-              ],
-            ),
-            const SizedBox(height: 30),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                DariXOutlinedButton(
-                  onPressed: () async {
-                    await Future.delayed(const Duration(milliseconds: 500));
-                    print('---- Helloooo!');
-                  },
-                  buttonText: 'push me!',
-                  width: 140,
-                  height: 45,
-                  sideColor: Theme.of(context).colorScheme.primary,
-                ),
-                const SizedBox(width: 30),
-                DariXOutlinedButton(
-                  onPressed: () async {
-                    await Future.delayed(const Duration(milliseconds: 500));
-                    print('---- Helloooo!');
-                  },
-                  buttonText: 'push me!',
-                  width: 140,
-                  height: 45,
-                  icon: const Icon(Icons.save, size: 22),
-                  sideColor: Theme.of(context).colorScheme.primary,
-                ),
-              ],
-            ),
+                onPressed: () async {
+                  await Future.delayed(Duration(milliseconds: 300));
+                },
+                buttonText: 'push me',
+                width: 130),
+            const SizedBox(height: 20),
+            DariXElevatedButton(
+                onPressed: () async {
+                  await Future.delayed(Duration(milliseconds: 300));
+                },
+                buttonText: 'push me',
+                width: 130,
+                height: 45),
+            const SizedBox(height: 20),
+            DariXFilledButton(
+                onPressed: () async {
+                  await Future.delayed(Duration(milliseconds: 300));
+                },
+                buttonText: 'push me',
+                width: 130,
+                height: 45),
+            const SizedBox(height: 20),
+            DariXTextButton(
+                onPressed: () async {
+                  await Future.delayed(Duration(milliseconds: 300));
+                },
+                buttonText: 'push me',
+                width: 130),
+            const SizedBox(height: 20),
+            DariXOutlinedButton(
+                onPressed: () async {
+                  await Future.delayed(Duration(milliseconds: 300));
+                },
+                buttonText: 'push me',
+                width: 130,
+                height: 45)
           ],
         ),
       ),

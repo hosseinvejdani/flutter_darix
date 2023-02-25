@@ -13,3 +13,7 @@
 ## 0.0.4
 
 * add ALT to image
+
+## 0.0.5
+
+* update example
