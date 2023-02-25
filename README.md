@@ -18,7 +18,7 @@ This package contains 4 button types: TextButton, ElevatedButton, FilledButton, 
 
 ## Preview
 
-(https://github.com/hosseinvejdani/flutter_darix/blob/master/assets/buttons.png)
+<img src="https://github.com/hosseinvejdani/flutter_darix/blob/master/assets/buttons.png" alt="alt text">
 
 ## Getting started
 
