@@ -9,3 +9,7 @@
 ## 0.0.3
 
 * added example
+
+## 0.0.4
+
+* add ALT to image

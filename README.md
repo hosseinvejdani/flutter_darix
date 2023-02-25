@@ -18,7 +18,7 @@ This package contains 4 button types: TextButton, ElevatedButton, FilledButton, 
 
 ## Preview
 
-![alt text](https://github.com/hosseinvejdani/flutter_darix/blob/master/assets/buttons.png)
+![Flutter Buttons with progressbar indicators](https://github.com/hosseinvejdani/flutter_darix/blob/master/assets/buttons.png)
 
 ## Getting started
 
