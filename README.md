@@ -18,7 +18,7 @@ This package contains 4 button types: TextButton, ElevatedButton, FilledButton, 
 
 ## Preview
 
-https://github.com/hosseinvejdani/flutter_darix/blob/master/assets/buttons.png
+(https://github.com/hosseinvejdani/flutter_darix/blob/master/assets/buttons.png)
 
 ## Getting started
 
@@ -31,128 +31,12 @@ import 'package:flutter_darix/flutter_darix.dart';
 This is Simple example:
 
 ```dart
-Column(
-   mainAxisAlignment: MainAxisAlignment.center,
-   mainAxisSize: MainAxisSize.min,
-   children: [
-   DariXTextButton(
-      onPressed: () async {
-         await Future.delayed(const Duration(milliseconds: 500));
-         print('---- Helloooo!');
-      },
-      buttonText: 'push me!',
-      width: 140,
-   ),
-   const SizedBox(height: 30),
-   Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-         DariXFilledButton(
-         onPressed: () async {
-            await Future.delayed(const Duration(milliseconds: 500));
-            print('---- Helloooo!');
-         },
-         buttonText: 'push me!',
-         width: 140,
-         height: 45,
-         ),
-         const SizedBox(width: 30),
-         DariXFilledButton(
-         onPressed: () async {
-            await Future.delayed(const Duration(milliseconds: 500));
-            print('---- Helloooo!');
-         },
-         buttonText: 'push me!',
-         width: 140,
-         height: 45,
-         icon: const Icon(Icons.save, size: 22),
-         ),
-      ],
-   ),
-   const SizedBox(height: 30),
-   Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-         DariXFilledButton(
-         onPressed: () async {
-            await Future.delayed(const Duration(milliseconds: 500));
-            print('---- Helloooo!');
-         },
-         buttonText: 'push me!',
-         width: 140,
-         height: 45,
-         isTonal: true,
-         ),
-         const SizedBox(width: 30),
-         DariXFilledButton(
-         onPressed: () async {
-            await Future.delayed(const Duration(milliseconds: 500));
-            print('---- Helloooo!');
-         },
-         buttonText: 'push me!',
-         width: 140,
-         height: 45,
-         icon: const Icon(Icons.save, size: 22),
-         isTonal: true,
-         ),
-      ],
-   ),
-   const SizedBox(height: 30),
-   Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-         DariXElevatedButton(
-         onPressed: () async {
-            await Future.delayed(const Duration(milliseconds: 500));
-            print('---- Helloooo!');
-         },
-         buttonText: 'push me!',
-         width: 140,
-         height: 45,
-         ),
-         const SizedBox(width: 30),
-         DariXElevatedButton(
-         onPressed: () async {
-            await Future.delayed(const Duration(milliseconds: 500));
-            print('---- Helloooo!');
-         },
-         buttonText: 'push me!',
-         width: 140,
-         height: 45,
-         icon: const Icon(Icons.save, size: 22),
-         ),
-      ],
-   ),
-   const SizedBox(height: 30),
-   Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-         DariXOutlinedButton(
-         onPressed: () async {
-            await Future.delayed(const Duration(milliseconds: 500));
-            print('---- Helloooo!');
-         },
-         buttonText: 'push me!',
-         width: 140,
-         height: 45,
-         sideColor: Theme.of(context).colorScheme.primary,
-         ),
-         const SizedBox(width: 30),
-         DariXOutlinedButton(
-         onPressed: () async {
-            await Future.delayed(const Duration(milliseconds: 500));
-            print('---- Helloooo!');
-         },
-         buttonText: 'push me!',
-         width: 140,
-         height: 45,
-         icon: const Icon(Icons.save, size: 22),
-         sideColor: Theme.of(context).colorScheme.primary,
-         ),
-      ],
-   ),
-   ],
-)
+DariXFilledButton(
+onPressed: () => null,
+buttonText: 'push me!',
+width: 140,
+height: 45,
+),
 ```
 
 
