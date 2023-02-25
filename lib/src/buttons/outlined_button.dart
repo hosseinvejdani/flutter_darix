@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class MyOutlinedButton extends StatefulWidget {
+class DariXOutlinedButton extends StatefulWidget {
   Function onPressed;
   String buttonText;
   double width;
@@ -10,7 +10,7 @@ class MyOutlinedButton extends StatefulWidget {
   Color? progressBarColor;
   Color? sideColor;
 
-  MyOutlinedButton({
+  DariXOutlinedButton({
     Key? key,
     required this.onPressed,
     required this.buttonText,
@@ -25,10 +25,10 @@ class MyOutlinedButton extends StatefulWidget {
   }
 
   @override
-  State<MyOutlinedButton> createState() => _MyOutlinedButtonState();
+  State<DariXOutlinedButton> createState() => _DariXOutlinedButtonState();
 }
 
-class _MyOutlinedButtonState extends State<MyOutlinedButton> {
+class _DariXOutlinedButtonState extends State<DariXOutlinedButton> {
   bool _isLoading = false; // A flag to indicate whether the button is loading
 
   void _onPressed() async {
