@@ -41,7 +41,7 @@ DariXTextButton(
 )
 ```
 
-### FilledButton without icon 
+### FilledButton without icon example
 
 ```dart
 DariXFilledButton(
@@ -52,7 +52,7 @@ DariXFilledButton(
 )
 ```
 
-### FilledButton with icon 
+### FilledButton with icon example
 ```dart
 DariXFilledButton(
    onPressed: () {},
@@ -63,7 +63,7 @@ DariXFilledButton(
 )
 ```
 
-### Tonal FilledButton without icon 
+### Tonal FilledButton without icon example
 ```dart
 DariXFilledButton(
    onPressed: () {},
@@ -74,7 +74,7 @@ DariXFilledButton(
 )
 ```
 
-### Tonal FilledButton with icon 
+### Tonal FilledButton with icon example
 ```dart
 DariXFilledButton(
    onPressed: () {},
@@ -86,7 +86,7 @@ DariXFilledButton(
 )
 ```
 
-### ElevatedButton without icon 
+### ElevatedButton without icon example
 ```dart
 DariXElevatedButton(
    onPressed: () {},
@@ -96,7 +96,7 @@ DariXElevatedButton(
 )
 ```
 
-### ElevatedButton with icon 
+### ElevatedButton with icon example
 ```dart
 DariXElevatedButton(
    onPressed: () {},
@@ -107,7 +107,7 @@ DariXElevatedButton(
 )
 ```
 
-### OutlinedButton without icon 
+### OutlinedButton without icon example
 ```dart
 DariXOutlinedButton(
    onPressed: () {},
@@ -117,7 +117,7 @@ DariXOutlinedButton(
 )
 ```
 
-### OutlinedButton with icon 
+### OutlinedButton with icon example
 ```dart
 DariXOutlinedButton(
    onPressed: () {},
@@ -131,4 +131,4 @@ DariXOutlinedButton(
 ## Notes
 For more customizations, you can use some other optional filed for the buttons such as:
 style, progressBarSize, progressBarColor, customProgressBar, etc. 
-for more info see source code of each button class in [repo](https://github.com/hosseinvejdani/flutter_darix).
+for more info see source code of each button class in [repo](https://github.com/hosseinvejdani/flutter_darix/tree/master/lib/src/buttons).
