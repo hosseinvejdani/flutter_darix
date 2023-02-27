@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 class DariXFilledButton extends StatefulWidget {
   Function onPressed;
   String buttonText;
-  double width;
-  double height;
+  double? width;
+  double? height;
   Icon? icon;
   double? progressBarSize;
   Color? progressBarColor;
@@ -14,15 +14,14 @@ class DariXFilledButton extends StatefulWidget {
     super.key,
     required this.onPressed,
     required this.buttonText,
-    required this.width,
-    required this.height,
+    this.width,
+    this.height,
     this.icon,
     this.progressBarSize,
     this.progressBarColor,
     this.isTonal,
   }) {
     progressBarSize = progressBarSize ?? (icon != null ? icon!.size : 22);
-    progressBarColor = progressBarColor ?? Colors.white;
     isTonal = isTonal ?? false;
   }
 
@@ -72,7 +71,8 @@ class _DariXFilledButtonState extends State<DariXFilledButton> {
   }
 
   Container _circularProgressBar() {
-    final _color = widget.isTonal! ? Theme.of(context).buttonTheme.colorScheme!.onBackground.withAlpha(200) : widget.progressBarColor!;
+    final _progressBarColor = widget.progressBarColor ?? Theme.of(context).colorScheme.onPrimary;
+    final _color = widget.isTonal! ? Theme.of(context).buttonTheme.colorScheme!.onBackground.withAlpha(200) : _progressBarColor;
     return Container(
       height: widget.progressBarSize,
       width: widget.progressBarSize,

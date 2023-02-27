@@ -32,10 +32,10 @@ This is Simple example:
 
 ```dart
 DariXFilledButton(
-onPressed: () => null,
-buttonText: 'push me!',
-width: 140,
-height: 45,
+   onPressed: () => null,
+   buttonText: 'push me!',
+   width: 140,
+   height: 45,
 ),
 ```
 

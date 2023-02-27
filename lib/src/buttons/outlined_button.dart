@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 class DariXOutlinedButton extends StatefulWidget {
   Function onPressed;
   String buttonText;
-  double width;
-  double height;
+  double? width;
+  double? height;
   Icon? icon;
   double? progressBarSize;
   Color? progressBarColor;
@@ -14,8 +14,8 @@ class DariXOutlinedButton extends StatefulWidget {
     Key? key,
     required this.onPressed,
     required this.buttonText,
-    required this.width,
-    required this.height,
+    this.width,
+    this.height,
     this.icon,
     this.progressBarSize,
     this.progressBarColor,

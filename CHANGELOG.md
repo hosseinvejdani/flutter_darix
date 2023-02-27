@@ -17,3 +17,8 @@
 ## 0.0.5
 
 * update example
+
+## 0.0.6
+
+* update fields for buttons
+* update example

@@ -11,13 +11,13 @@ class DariXApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Flutter DariX',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
         useMaterial3: true,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Flutter DariX'),
     );
   }
 }
@@ -37,52 +37,145 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        centerTitle: true,
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: [
-            DariXTextButton(
-                onPressed: () async {
-                  await Future.delayed(Duration(milliseconds: 300));
-                },
-                buttonText: 'push me',
-                width: 130),
+            _textButtonExample(),
             const SizedBox(height: 20),
-            DariXElevatedButton(
-                onPressed: () async {
-                  await Future.delayed(Duration(milliseconds: 300));
-                },
-                buttonText: 'push me',
-                width: 130,
-                height: 45),
+            _elevatedButtonExamples(),
             const SizedBox(height: 20),
-            DariXFilledButton(
-                onPressed: () async {
-                  await Future.delayed(Duration(milliseconds: 300));
-                },
-                buttonText: 'push me',
-                width: 130,
-                height: 45),
+            _filledButtonExamples(),
             const SizedBox(height: 20),
-            DariXTextButton(
-                onPressed: () async {
-                  await Future.delayed(Duration(milliseconds: 300));
-                },
-                buttonText: 'push me',
-                width: 130),
+            _tonalFilledButtonExamples(),
             const SizedBox(height: 20),
-            DariXOutlinedButton(
-                onPressed: () async {
-                  await Future.delayed(Duration(milliseconds: 300));
-                },
-                buttonText: 'push me',
-                width: 130,
-                height: 45)
+            _outlinedButtonExamples()
           ],
         ),
       ),
+    );
+  }
+
+  Widget _outlinedButtonExamples() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        DariXOutlinedButton(
+          onPressed: () async {
+            await Future.delayed(Duration(milliseconds: 300));
+          },
+          buttonText: 'push me',
+          width: 130,
+          height: 45,
+        ),
+        const SizedBox(width: 20),
+        DariXOutlinedButton(
+          onPressed: () async {
+            await Future.delayed(Duration(milliseconds: 300));
+          },
+          buttonText: 'push me',
+          width: 130,
+          height: 45,
+          icon: const Icon(Icons.save, size: 22),
+        ),
+      ],
+    );
+  }
+
+  Widget _tonalFilledButtonExamples() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        DariXFilledButton(
+          onPressed: () async {
+            await Future.delayed(Duration(milliseconds: 300));
+          },
+          buttonText: 'push me',
+          width: 130,
+          height: 45,
+          isTonal: true,
+        ),
+        const SizedBox(width: 20),
+        DariXFilledButton(
+          onPressed: () async {
+            await Future.delayed(Duration(milliseconds: 300));
+          },
+          buttonText: 'push me',
+          width: 130,
+          height: 45,
+          isTonal: true,
+          icon: const Icon(Icons.save, size: 22),
+        ),
+      ],
+    );
+  }
+
+  Widget _filledButtonExamples() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        DariXFilledButton(
+          onPressed: () async {
+            await Future.delayed(Duration(milliseconds: 300));
+          },
+          buttonText: 'push me',
+          width: 130,
+          height: 45,
+        ),
+        const SizedBox(width: 20),
+        DariXFilledButton(
+          onPressed: () async {
+            await Future.delayed(Duration(milliseconds: 300));
+          },
+          buttonText: 'push me',
+          width: 130,
+          height: 45,
+          icon: const Icon(Icons.save, size: 22),
+        ),
+      ],
+    );
+  }
+
+  Widget _elevatedButtonExamples() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        DariXElevatedButton(
+          onPressed: () async {
+            await Future.delayed(Duration(milliseconds: 300));
+          },
+          buttonText: 'push me',
+          width: 130,
+          height: 45,
+        ),
+        const SizedBox(width: 20),
+        DariXElevatedButton(
+          onPressed: () async {
+            await Future.delayed(Duration(milliseconds: 300));
+          },
+          buttonText: 'push me',
+          width: 130,
+          height: 45,
+          icon: const Icon(Icons.save, size: 22),
+        ),
+      ],
+    );
+  }
+
+  Widget _textButtonExample() {
+    return DariXTextButton(
+      onPressed: () async {
+        await Future.delayed(Duration(milliseconds: 300));
+      },
+      buttonText: 'push me',
+      width: 130,
     );
   }
 }

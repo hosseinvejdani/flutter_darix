@@ -1,9 +1,12 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 
 class DariXTextButton extends StatefulWidget {
   Function onPressed;
   String buttonText;
-  double width;
+  double? width;
+  double? height;
   double? progressBarLength;
   Color? progressBarColor;
 
@@ -11,7 +14,8 @@ class DariXTextButton extends StatefulWidget {
     super.key,
     required this.onPressed,
     required this.buttonText,
-    required this.width,
+    this.width,
+    this.height,
     this.progressBarLength,
     this.progressBarColor,
   }) {
@@ -51,9 +55,12 @@ class _DariXTextButtonState extends State<DariXTextButton> {
   Widget build(BuildContext context) {
     return SizedBox(
       width: widget.width,
-      child: TextButton(
-        onPressed: _onPressed,
-        child: _isLoading ? _LinearProgressBar() : Text(widget.buttonText),
+      height: widget.height,
+      child: Center(
+        child: TextButton(
+          onPressed: _onPressed,
+          child: _isLoading ? _LinearProgressBar() : Text(widget.buttonText),
+        ),
       ),
     );
   }
