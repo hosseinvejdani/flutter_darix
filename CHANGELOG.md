@@ -27,3 +27,7 @@
 
 * update fields for buttons
 * update example
+
+## 0.0.8
+
+* make onPressed and onLongPressed nullable

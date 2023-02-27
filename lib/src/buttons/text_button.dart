@@ -34,12 +34,6 @@ class DariXTextButton extends StatefulWidget {
   }) {
     // Sets a default value of 65 for the progressBarLength variable
     progressBarLength = progressBarLength ?? 65;
-
-    // Sets a default function for onPressed if it is not set
-    onPressed = onPressed ?? () {};
-
-    // Sets a default function for onLongPressed if it is not set
-    onLongPressed = onLongPressed ?? () {};
   }
 
   @override
@@ -64,7 +58,6 @@ class _DariXTextButtonState extends State<DariXTextButton> {
     setState(() {
       _isLoading = true; // Set the flag to true when the button is pressed
     });
-
     await widget.onLongPressed!();
     setState(() {
       _isLoading = false; // Set the flag back to false when the task is done
@@ -99,8 +92,8 @@ class _DariXTextButtonState extends State<DariXTextButton> {
       child: Center(
         // Creates a TextButton, with onPressed and onLongPress specified in the widget
         child: TextButton(
-          onPressed: _isLoading ? null : _onPressed,
-          onLongPress: _isLoading ? null : _onLongPressed,
+          onPressed: widget.onPressed != null ? (_isLoading ? null : _onPressed) : null,
+          onLongPress: widget.onLongPressed != null ? (_isLoading ? null : _onLongPressed) : null,
           style: widget.buttonStyle,
           // Conditionally display either the progress bar, or the text based on the _isLoading flag
           child: _isLoading ? _progressBar() : Text(widget.buttonText, style: widget.textStyle),

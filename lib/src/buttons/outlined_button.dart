@@ -64,12 +64,6 @@ class DariXOutlinedButton extends StatefulWidget {
   }) {
     // Set the size of the progress bar if not provided
     progressBarSize = progressBarSize ?? (icon != null ? icon!.size : 22);
-
-    // Callback when the button is pressed
-    onPressed = onPressed ?? () {};
-
-    // Callback when the button is longpressed
-    onLongPressed = onLongPressed ?? () {};
   }
 
   @override
@@ -114,8 +108,8 @@ class _DariXOutlinedButtonState extends State<DariXOutlinedButton> {
             OutlinedButton.styleFrom(
               side: BorderSide(color: widget.sideColor ?? Theme.of(context).colorScheme.primary),
             ),
-        onPressed: _isLoading ? null : _onPressed,
-        onLongPress: _isLoading ? null : _onLongPressed,
+        onPressed: widget.onPressed != null ? (_isLoading ? null : _onPressed) : null,
+        onLongPress: widget.onLongPressed != null ? (_isLoading ? null : _onLongPressed) : null,
         child: _isLoading ? _progressBar() : Text(widget.buttonText, style: widget.textStyle),
       ),
     );
@@ -131,8 +125,8 @@ class _DariXOutlinedButtonState extends State<DariXOutlinedButton> {
             OutlinedButton.styleFrom(
               side: BorderSide(color: widget.sideColor ?? Theme.of(context).colorScheme.primary),
             ),
-        onPressed: _isLoading ? null : _onPressed,
-        onLongPress: _isLoading ? null : _onLongPressed,
+        onPressed: widget.onPressed != null ? (_isLoading ? null : _onPressed) : null,
+        onLongPress: widget.onLongPressed != null ? (_isLoading ? null : _onLongPressed) : null,
         icon: _isLoading ? _progressBar() : widget.icon!, // Use an Icon as icon when not loading
         label: Text(widget.buttonText, style: widget.textStyle),
       ),

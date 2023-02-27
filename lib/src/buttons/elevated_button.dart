@@ -73,12 +73,6 @@ class DariXElevatedButton extends StatefulWidget {
   }) {
     // Assign a default value to progressBarSize in case no other value is assigned
     progressBarSize = progressBarSize ?? (icon != null ? icon!.size : 22);
-
-    // Set a default value for onPressed in case it is not set elsewhere
-    onPressed = onPressed ?? () {};
-
-    // Set a default value for onLongPressed in case it is not set elsewhere
-    onLongPressed = onLongPressed ?? () {};
   }
 
   @override
@@ -116,8 +110,8 @@ class _DariXElevatedButtonState extends State<DariXElevatedButton> {
       width: widget.width, // Define the width
       height: widget.height, // Define the height
       child: ElevatedButton(
-        onPressed: _isLoading ? null : _onPressed, // Add an "onPressed" call back conditionally based on `_isLoading`
-        onLongPress: _isLoading ? null : _onLongPressed, // Add an "onLongPress" call back conditionally based on `_isLoading`
+        onPressed: widget.onPressed != null ? (_isLoading ? null : _onPressed) : null,
+        onLongPress: widget.onLongPressed != null ? (_isLoading ? null : _onLongPressed) : null,
         style: widget.buttonStyle, // Set the button style
         child: _isLoading ? _progressBar() : Text(widget.buttonText, style: widget.textStyle), // Add child elements conditionally based on `_isloading`
       ),
@@ -132,9 +126,8 @@ class _DariXElevatedButtonState extends State<DariXElevatedButton> {
 
       // Create an ElevatedButton theme element with icon, label, style and onPress callbacks
       child: ElevatedButton.icon(
-        onPressed: _isLoading ? null : _onPressed,
-        onLongPress: _isLoading ? null : _onLongPressed,
-
+        onPressed: widget.onPressed != null ? (_isLoading ? null : _onPressed) : null,
+        onLongPress: widget.onLongPressed != null ? (_isLoading ? null : _onLongPressed) : null,
         // Use an Icon as icon when not loading
         icon: _isLoading ? _progressBar() : widget.icon!,
         label: Text(widget.buttonText, style: widget.textStyle),

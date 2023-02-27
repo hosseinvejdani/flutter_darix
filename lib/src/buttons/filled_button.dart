@@ -66,12 +66,6 @@ class DariXFilledButton extends StatefulWidget {
     // Set the progress bar size
     progressBarSize = progressBarSize ?? (icon != null ? icon!.size : 22);
 
-    // Set the action when pressed
-    onPressed = onPressed ?? () {};
-
-    // Set the action when longpressed
-    onLongPressed = onLongPressed ?? () {};
-
     // Set if it is tonal or not
     isTonal = isTonal ?? false;
   }
@@ -119,14 +113,14 @@ class _DariXFilledButtonState extends State<DariXFilledButton> {
       // Show progress bar or text depending on the _isLoading flag value
       child: widget.isTonal!
           ? FilledButton.tonal(
-              onPressed: _isLoading ? null : _onPressed,
-              onLongPress: _isLoading ? null : _onLongPressed,
+              onPressed: widget.onPressed != null ? (_isLoading ? null : _onPressed) : null,
+              onLongPress: widget.onLongPressed != null ? (_isLoading ? null : _onLongPressed) : null,
               style: widget.buttonStyle,
               child: _isLoading ? _progressBar() : Text(widget.buttonText, style: widget.textStyle),
             )
           : FilledButton(
-              onPressed: _isLoading ? null : _onPressed,
-              onLongPress: _isLoading ? null : _onLongPressed,
+              onPressed: widget.onPressed != null ? (_isLoading ? null : _onPressed) : null,
+              onLongPress: widget.onLongPressed != null ? (_isLoading ? null : _onLongPressed) : null,
               style: widget.buttonStyle,
               child: _isLoading ? _progressBar() : Text(widget.buttonText, style: widget.textStyle),
             ),
@@ -143,16 +137,16 @@ class _DariXFilledButtonState extends State<DariXFilledButton> {
       child: widget.isTonal!
           ? FilledButton.tonalIcon(
               // Disable the button while loading
-              onPressed: _isLoading ? null : _onPressed,
-              onLongPress: _isLoading ? null : _onLongPressed,
+              onPressed: widget.onPressed != null ? (_isLoading ? null : _onPressed) : null,
+              onLongPress: widget.onLongPressed != null ? (_isLoading ? null : _onLongPressed) : null,
               icon: _icon,
               label: _label,
               style: widget.buttonStyle,
             )
           : FilledButton.icon(
               // Disable the button while loading
-              onPressed: _isLoading ? null : _onPressed,
-              onLongPress: _isLoading ? null : _onLongPressed,
+              onPressed: widget.onPressed != null ? (_isLoading ? null : _onPressed) : null,
+              onLongPress: widget.onLongPressed != null ? (_isLoading ? null : _onLongPressed) : null,
               icon: _icon,
               label: _label,
               style: widget.buttonStyle,
