@@ -64,8 +64,8 @@ class _DariXElevatedButtonState extends State<DariXElevatedButton> {
       width: widget.width,
       height: widget.height,
       child: ElevatedButton(
-        onPressed: _onPressed,
-        onLongPress: _onLongPressed,
+        onPressed: _isLoading ? null : _onPressed,
+        onLongPress: _isLoading ? null : _onLongPressed,
         style: widget.style,
         child: _isLoading ? _progressBar() : Text(widget.buttonText),
       ),
@@ -77,8 +77,8 @@ class _DariXElevatedButtonState extends State<DariXElevatedButton> {
       width: widget.width,
       height: widget.height,
       child: ElevatedButton.icon(
-        onPressed: _onPressed,
-        onLongPress: _onLongPressed,
+        onPressed: _isLoading ? null : _onPressed,
+        onLongPress: _isLoading ? null : _onLongPressed,
         icon: _isLoading ? _progressBar() : widget.icon!, // Use an Icon as icon when not loading
         label: Text(widget.buttonText),
         style: widget.style,

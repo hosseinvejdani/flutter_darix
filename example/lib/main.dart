@@ -65,18 +65,16 @@ class _MyHomePageState extends State<MyHomePage> {
       mainAxisSize: MainAxisSize.min,
       children: [
         DariXOutlinedButton(
-          onPressed: () async {
-            await Future.delayed(Duration(milliseconds: 300));
-          },
+          onPressed: _action,
+          onLongPressed: _action,
           buttonText: 'push me',
           width: 130,
           height: 45,
         ),
         const SizedBox(width: 20),
         DariXOutlinedButton(
-          onPressed: () async {
-            await Future.delayed(Duration(milliseconds: 300));
-          },
+          onPressed: _action,
+          onLongPressed: _action,
           buttonText: 'push me',
           width: 130,
           height: 45,
@@ -92,9 +90,8 @@ class _MyHomePageState extends State<MyHomePage> {
       mainAxisSize: MainAxisSize.min,
       children: [
         DariXFilledButton(
-          onPressed: () async {
-            await Future.delayed(Duration(milliseconds: 300));
-          },
+          onPressed: _action,
+          onLongPressed: _action,
           buttonText: 'push me',
           width: 130,
           height: 45,
@@ -102,9 +99,8 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         const SizedBox(width: 20),
         DariXFilledButton(
-          onPressed: () async {
-            await Future.delayed(Duration(milliseconds: 300));
-          },
+          onPressed: _action,
+          onLongPressed: _action,
           buttonText: 'push me',
           width: 130,
           height: 45,
@@ -121,18 +117,16 @@ class _MyHomePageState extends State<MyHomePage> {
       mainAxisSize: MainAxisSize.min,
       children: [
         DariXFilledButton(
-          onPressed: () async {
-            await Future.delayed(Duration(milliseconds: 300));
-          },
+          onPressed: _action,
+          onLongPressed: _action,
           buttonText: 'push me',
           width: 130,
           height: 45,
         ),
         const SizedBox(width: 20),
         DariXFilledButton(
-          onPressed: () async {
-            await Future.delayed(Duration(milliseconds: 300));
-          },
+          onPressed: _action,
+          onLongPressed: _action,
           buttonText: 'push me',
           width: 130,
           height: 45,
@@ -148,18 +142,16 @@ class _MyHomePageState extends State<MyHomePage> {
       mainAxisSize: MainAxisSize.min,
       children: [
         DariXElevatedButton(
-          onPressed: () async {
-            await Future.delayed(Duration(milliseconds: 300));
-          },
+          onPressed: _action,
+          onLongPressed: _action,
           buttonText: 'push me',
           width: 130,
           height: 45,
         ),
         const SizedBox(width: 20),
         DariXElevatedButton(
-          onPressed: () async {
-            await Future.delayed(Duration(milliseconds: 300));
-          },
+          onPressed: _action,
+          onLongPressed: _action,
           buttonText: 'push me',
           width: 130,
           height: 45,
@@ -171,11 +163,14 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget _textButtonExample() {
     return DariXTextButton(
-      onPressed: () async {
-        await Future.delayed(Duration(milliseconds: 300));
-      },
+      onPressed: _action,
+      onLongPressed: _action,
       buttonText: 'push me',
       width: 130,
     );
+  }
+
+  _action() async {
+    await Future.delayed(Duration(milliseconds: 500));
   }
 }

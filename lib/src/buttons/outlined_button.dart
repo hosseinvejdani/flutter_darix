@@ -70,8 +70,8 @@ class _DariXOutlinedButtonState extends State<DariXOutlinedButton> {
             OutlinedButton.styleFrom(
               side: BorderSide(color: widget.sideColor ?? Theme.of(context).colorScheme.primary),
             ),
-        onPressed: _onPressed,
-        onLongPress: _onLongPressed,
+        onPressed: _isLoading ? null : _onPressed,
+        onLongPress: _isLoading ? null : _onLongPressed,
         child: _isLoading ? _progressBar() : Text(widget.buttonText),
       ),
     );
@@ -86,8 +86,8 @@ class _DariXOutlinedButtonState extends State<DariXOutlinedButton> {
             OutlinedButton.styleFrom(
               side: BorderSide(color: widget.sideColor ?? Theme.of(context).colorScheme.primary),
             ),
-        onPressed: _onPressed,
-        onLongPress: _onLongPressed,
+        onPressed: _isLoading ? null : _onPressed,
+        onLongPress: _isLoading ? null : _onLongPressed,
         icon: _isLoading ? _progressBar() : widget.icon!, // Use an Icon as icon when not loading
         label: Text(widget.buttonText),
       ),

@@ -1,3 +1,5 @@
+// ignore_for_file: no_leading_underscores_for_local_identifiers
+
 import 'package:flutter/material.dart';
 
 class DariXFilledButton extends StatefulWidget {
@@ -68,14 +70,14 @@ class _DariXFilledButtonState extends State<DariXFilledButton> {
       height: widget.height,
       child: widget.isTonal!
           ? FilledButton.tonal(
-              onPressed: _onPressed,
-              onLongPress: _onLongPressed,
+              onPressed: _isLoading ? null : _onPressed,
+              onLongPress: _isLoading ? null : _onLongPressed,
               style: widget.style,
               child: _isLoading ? _progressBar() : Text(widget.buttonText),
             )
           : FilledButton(
-              onPressed: _onPressed,
-              onLongPress: _onLongPressed,
+              onPressed: _isLoading ? null : _onPressed,
+              onLongPress: _isLoading ? null : _onLongPressed,
               style: widget.style,
               child: _isLoading ? _progressBar() : Text(widget.buttonText),
             ),
@@ -91,15 +93,15 @@ class _DariXFilledButtonState extends State<DariXFilledButton> {
       height: widget.height,
       child: widget.isTonal!
           ? FilledButton.tonalIcon(
-              onPressed: _onPressed,
-              onLongPress: _onLongPressed,
+              onPressed: _isLoading ? null : _onPressed,
+              onLongPress: _isLoading ? null : _onLongPressed,
               icon: _icon,
               label: _label,
               style: widget.style,
             )
           : FilledButton.icon(
-              onPressed: _onPressed,
-              onLongPress: _onLongPressed,
+              onPressed: _isLoading ? null : _onPressed,
+              onLongPress: _isLoading ? null : _onLongPressed,
               icon: _icon,
               label: _label,
               style: widget.style,
@@ -108,8 +110,9 @@ class _DariXFilledButtonState extends State<DariXFilledButton> {
   }
 
   Container _progressBar() {
-    final _progressBarColor = widget.progressBarColor ?? Theme.of(context).colorScheme.onPrimary;
-    final _color = widget.isTonal! ? Theme.of(context).buttonTheme.colorScheme!.onBackground.withAlpha(200) : _progressBarColor;
+    final _progressBarColor = widget.progressBarColor ?? Theme.of(context).buttonTheme.colorScheme!.onBackground.withAlpha(120);
+    final _progressBarColorTonal = widget.progressBarColor ?? Theme.of(context).buttonTheme.colorScheme!.onBackground.withAlpha(180);
+    final _color = widget.isTonal! ? _progressBarColorTonal : _progressBarColor;
     return Container(
       height: widget.progressBarSize,
       width: widget.progressBarSize,

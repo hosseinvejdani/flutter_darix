@@ -78,8 +78,8 @@ class _DariXTextButtonState extends State<DariXTextButton> {
       height: widget.height,
       child: Center(
         child: TextButton(
-          onPressed: _onPressed,
-          onLongPress: _onLongPressed,
+          onPressed: _isLoading ? null : _onPressed,
+          onLongPress: _isLoading ? null : _onLongPressed,
           style: widget.style,
           child: _isLoading ? _progressBar() : Text(widget.buttonText),
         ),
