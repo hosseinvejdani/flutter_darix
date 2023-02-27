@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
 class DariXOutlinedButton extends StatefulWidget {
+  String buttonText;
+  TextStyle? textStyle;
   Function? onPressed;
   Function? onLongPressed;
-  String buttonText;
   double? width;
   double? height;
   Icon? icon;
-  ButtonStyle? style;
+  ButtonStyle? buttonStyle;
   double? progressBarSize;
   Color? progressBarColor;
   Color? sideColor;
@@ -16,12 +17,13 @@ class DariXOutlinedButton extends StatefulWidget {
   DariXOutlinedButton({
     Key? key,
     required this.buttonText,
+    this.textStyle,
     this.onPressed,
     this.onLongPressed,
     this.width,
     this.height,
     this.icon,
-    this.style,
+    this.buttonStyle,
     this.progressBarSize,
     this.progressBarColor,
     this.sideColor,
@@ -66,13 +68,13 @@ class _DariXOutlinedButtonState extends State<DariXOutlinedButton> {
       width: widget.width,
       height: widget.height,
       child: OutlinedButton(
-        style: widget.style ??
+        style: widget.buttonStyle ??
             OutlinedButton.styleFrom(
               side: BorderSide(color: widget.sideColor ?? Theme.of(context).colorScheme.primary),
             ),
         onPressed: _isLoading ? null : _onPressed,
         onLongPress: _isLoading ? null : _onLongPressed,
-        child: _isLoading ? _progressBar() : Text(widget.buttonText),
+        child: _isLoading ? _progressBar() : Text(widget.buttonText, style: widget.textStyle),
       ),
     );
   }
@@ -82,14 +84,14 @@ class _DariXOutlinedButtonState extends State<DariXOutlinedButton> {
       width: widget.width,
       height: widget.height,
       child: OutlinedButton.icon(
-        style: widget.style ??
+        style: widget.buttonStyle ??
             OutlinedButton.styleFrom(
               side: BorderSide(color: widget.sideColor ?? Theme.of(context).colorScheme.primary),
             ),
         onPressed: _isLoading ? null : _onPressed,
         onLongPress: _isLoading ? null : _onLongPressed,
         icon: _isLoading ? _progressBar() : widget.icon!, // Use an Icon as icon when not loading
-        label: Text(widget.buttonText),
+        label: Text(widget.buttonText, style: widget.textStyle),
       ),
     );
   }

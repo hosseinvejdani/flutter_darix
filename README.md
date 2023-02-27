@@ -34,8 +34,9 @@ There are some simple examples:
 ### TextButton example 
 ```dart
 DariXTextButton(
+   buttonText: 'push me!', // the only required field
    onPressed: () {},
-   buttonText: 'push me!',
+   onLongPressed: () {},
    width: 140,
    height: 45,
 )
@@ -45,8 +46,9 @@ DariXTextButton(
 
 ```dart
 DariXFilledButton(
+   buttonText: 'push me!', // the only required field
    onPressed: () {},
-   buttonText: 'push me!',
+   onLongPressed: () {},
    width: 140,
    height: 45,
 )
@@ -55,8 +57,9 @@ DariXFilledButton(
 ### FilledButton with icon example
 ```dart
 DariXFilledButton(
+   buttonText: 'push me!', // the only required field
    onPressed: () {},
-   buttonText: 'push me!',
+   onLongPressed: () {},
    width: 140,
    height: 45,
    icon: const Icon(Icons.save),
@@ -66,8 +69,9 @@ DariXFilledButton(
 ### Tonal FilledButton without icon example
 ```dart
 DariXFilledButton(
+   buttonText: 'push me!', // the only required field
    onPressed: () {},
-   buttonText: 'push me!',
+   onLongPressed: () {},
    width: 140,
    height: 45,
    isTonal: true,
@@ -77,8 +81,9 @@ DariXFilledButton(
 ### Tonal FilledButton with icon example
 ```dart
 DariXFilledButton(
+   buttonText: 'push me!', // the only required field
    onPressed: () {},
-   buttonText: 'push me!',
+   onLongPressed: () {},
    width: 140,
    height: 45,
    icon: const Icon(Icons.save),
@@ -89,8 +94,9 @@ DariXFilledButton(
 ### ElevatedButton without icon example
 ```dart
 DariXElevatedButton(
+   buttonText: 'push me!', // the only required field
    onPressed: () {},
-   buttonText: 'push me!',
+   onLongPressed: () {},
    width: 140,
    height: 45,
 )
@@ -99,8 +105,9 @@ DariXElevatedButton(
 ### ElevatedButton with icon example
 ```dart
 DariXElevatedButton(
+   buttonText: 'push me!', // the only required field
    onPressed: () {},
-   buttonText: 'push me!',
+   onLongPressed: () {},
    width: 140,
    height: 45,
    icon: const Icon(Icons.save),
@@ -110,8 +117,9 @@ DariXElevatedButton(
 ### OutlinedButton without icon example
 ```dart
 DariXOutlinedButton(
+   buttonText: 'push me!', // the only required field
    onPressed: () {},
-   buttonText: 'push me!',
+   onLongPressed: () {},
    width: 140,
    height: 45,
 )
@@ -120,8 +128,9 @@ DariXOutlinedButton(
 ### OutlinedButton with icon example
 ```dart
 DariXOutlinedButton(
+   buttonText: 'push me!', // the only required field
    onPressed: () {},
-   buttonText: 'push me!',
+   onLongPressed: () {},
    width: 140,
    height: 45,
    icon: const Icon(Icons.save),
@@ -130,5 +139,5 @@ DariXOutlinedButton(
 
 ## Notes
 For more customizations, you can use some other optional filed for the buttons such as:
-style, progressBarSize, progressBarColor, customProgressBar, etc. 
+textStyle ,buttonStyle, progressBarSize, progressBarColor, customProgressBar, etc. 
 for more info see source code of each button class in [repo](https://github.com/hosseinvejdani/flutter_darix/tree/master/lib/src/buttons).

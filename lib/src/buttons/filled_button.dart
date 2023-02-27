@@ -3,13 +3,14 @@
 import 'package:flutter/material.dart';
 
 class DariXFilledButton extends StatefulWidget {
+  String buttonText;
+  TextStyle? textStyle;
   Function? onPressed;
   Function? onLongPressed;
-  String buttonText;
   double? width;
   double? height;
   Icon? icon;
-  ButtonStyle? style;
+  ButtonStyle? buttonStyle;
   double? progressBarSize;
   Color? progressBarColor;
   bool? isTonal;
@@ -18,12 +19,13 @@ class DariXFilledButton extends StatefulWidget {
   DariXFilledButton({
     super.key,
     required this.buttonText,
+    this.textStyle,
     this.onPressed,
     this.onLongPressed,
     this.width,
     this.height,
     this.icon,
-    this.style,
+    this.buttonStyle,
     this.progressBarSize,
     this.progressBarColor,
     this.isTonal,
@@ -72,14 +74,14 @@ class _DariXFilledButtonState extends State<DariXFilledButton> {
           ? FilledButton.tonal(
               onPressed: _isLoading ? null : _onPressed,
               onLongPress: _isLoading ? null : _onLongPressed,
-              style: widget.style,
-              child: _isLoading ? _progressBar() : Text(widget.buttonText),
+              style: widget.buttonStyle,
+              child: _isLoading ? _progressBar() : Text(widget.buttonText, style: widget.textStyle),
             )
           : FilledButton(
               onPressed: _isLoading ? null : _onPressed,
               onLongPress: _isLoading ? null : _onLongPressed,
-              style: widget.style,
-              child: _isLoading ? _progressBar() : Text(widget.buttonText),
+              style: widget.buttonStyle,
+              child: _isLoading ? _progressBar() : Text(widget.buttonText, style: widget.textStyle),
             ),
     );
   }
@@ -87,7 +89,7 @@ class _DariXFilledButtonState extends State<DariXFilledButton> {
   Widget _buttonWithIcon() {
     // Use an Icon as icon when not loading
     final _icon = _isLoading ? _progressBar() : widget.icon!;
-    final _label = Text(widget.buttonText);
+    final _label = Text(widget.buttonText, style: widget.textStyle);
     return SizedBox(
       width: widget.width,
       height: widget.height,
@@ -97,14 +99,14 @@ class _DariXFilledButtonState extends State<DariXFilledButton> {
               onLongPress: _isLoading ? null : _onLongPressed,
               icon: _icon,
               label: _label,
-              style: widget.style,
+              style: widget.buttonStyle,
             )
           : FilledButton.icon(
               onPressed: _isLoading ? null : _onPressed,
               onLongPress: _isLoading ? null : _onLongPressed,
               icon: _icon,
               label: _label,
-              style: widget.style,
+              style: widget.buttonStyle,
             ),
     );
   }

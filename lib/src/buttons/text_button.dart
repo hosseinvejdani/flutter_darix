@@ -3,12 +3,13 @@
 import 'package:flutter/material.dart';
 
 class DariXTextButton extends StatefulWidget {
+  String buttonText;
+  TextStyle? textStyle;
   Function? onPressed;
   Function? onLongPressed;
-  String buttonText;
   double? width;
   double? height;
-  ButtonStyle? style;
+  ButtonStyle? buttonStyle;
   double? progressBarLength;
   Color? progressBarColor;
   Widget? customProgressBar;
@@ -16,11 +17,12 @@ class DariXTextButton extends StatefulWidget {
   DariXTextButton({
     super.key,
     required this.buttonText,
+    this.textStyle,
     this.onPressed,
     this.onLongPressed,
     this.width,
     this.height,
-    this.style,
+    this.buttonStyle,
     this.progressBarLength,
     this.progressBarColor,
     this.customProgressBar,
@@ -80,8 +82,8 @@ class _DariXTextButtonState extends State<DariXTextButton> {
         child: TextButton(
           onPressed: _isLoading ? null : _onPressed,
           onLongPress: _isLoading ? null : _onLongPressed,
-          style: widget.style,
-          child: _isLoading ? _progressBar() : Text(widget.buttonText),
+          style: widget.buttonStyle,
+          child: _isLoading ? _progressBar() : Text(widget.buttonText, style: widget.textStyle),
         ),
       ),
     );

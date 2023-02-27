@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
 class DariXElevatedButton extends StatefulWidget {
+  String buttonText;
+  TextStyle? textStyle;
   Function? onPressed;
   Function? onLongPressed;
-  String buttonText;
   double? width;
   double? height;
   Icon? icon;
-  ButtonStyle? style;
+  ButtonStyle? buttonStyle;
   double? progressBarSize;
   Color? progressBarColor;
   Widget? customProgressBar;
@@ -15,12 +16,13 @@ class DariXElevatedButton extends StatefulWidget {
   DariXElevatedButton({
     super.key,
     required this.buttonText,
+    this.textStyle,
     this.onPressed,
     this.onLongPressed,
     this.width,
     this.height,
     this.icon,
-    this.style,
+    this.buttonStyle,
     this.progressBarSize,
     this.progressBarColor,
     this.customProgressBar,
@@ -66,8 +68,8 @@ class _DariXElevatedButtonState extends State<DariXElevatedButton> {
       child: ElevatedButton(
         onPressed: _isLoading ? null : _onPressed,
         onLongPress: _isLoading ? null : _onLongPressed,
-        style: widget.style,
-        child: _isLoading ? _progressBar() : Text(widget.buttonText),
+        style: widget.buttonStyle,
+        child: _isLoading ? _progressBar() : Text(widget.buttonText, style: widget.textStyle),
       ),
     );
   }
@@ -80,8 +82,8 @@ class _DariXElevatedButtonState extends State<DariXElevatedButton> {
         onPressed: _isLoading ? null : _onPressed,
         onLongPress: _isLoading ? null : _onLongPressed,
         icon: _isLoading ? _progressBar() : widget.icon!, // Use an Icon as icon when not loading
-        label: Text(widget.buttonText),
-        style: widget.style,
+        label: Text(widget.buttonText, style: widget.textStyle),
+        style: widget.buttonStyle,
       ),
     );
   }
