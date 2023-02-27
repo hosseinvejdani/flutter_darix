@@ -2,18 +2,50 @@
 
 import 'package:flutter/material.dart';
 
+/// This code creates a filled button widget for the Flutter app that can be used to perform certain tasks with the addition of icons.
+///
+/// The widget class DariXFilledButton accepts optional parameters, such as [buttonText], [textStyle], [onPressed], [onLongPress], [width], [height], [icon], [buttonStyle], [progressBarSize], [progressBarColor], [isTonal], and [customProgressBar].
+///
+/// The stateful widget _DariXFilledButtonState provides two functions _onPressed() and _onLongPressed() which are used to handle when the button is pressed and logn pressed respectively.
+///
+///  If a customProgressBar is not provided then a circular progress indicator is used.
+///
+///  Finally, the widget uses either _simpleButton() or _buttonWithIcon() depending on the availability of the icon.
 class DariXFilledButton extends StatefulWidget {
+// String used to set the text shown on the button
   String buttonText;
+
+// Used to style the text
   TextStyle? textStyle;
+
+// Function invoked when the user taps the button
   Function? onPressed;
+
+// Function invoked when user holds down the button
   Function? onLongPressed;
+
+// Used to set the width of the button
   double? width;
+
+// Used to set the height of the button
   double? height;
+
+// Icon shown on the button
   Icon? icon;
+
+// Button appearance can be changed by setting this
   ButtonStyle? buttonStyle;
+
+// Used to set the size of the progress bar
   double? progressBarSize;
+
+// Used to set the color of the progress bar
   Color? progressBarColor;
+
+// Used to indicate if the progress bar is tonal
   bool? isTonal;
+
+// Used to customize the progress bar as a widget
   Widget? customProgressBar;
 
   DariXFilledButton({
@@ -31,9 +63,16 @@ class DariXFilledButton extends StatefulWidget {
     this.isTonal,
     this.customProgressBar,
   }) {
+    // Set the progress bar size
     progressBarSize = progressBarSize ?? (icon != null ? icon!.size : 22);
+
+    // Set the action when pressed
     onPressed = onPressed ?? () {};
+
+    // Set the action when longpressed
     onLongPressed = onLongPressed ?? () {};
+
+    // Set if it is tonal or not
     isTonal = isTonal ?? false;
   }
 
@@ -48,21 +87,28 @@ class _DariXFilledButtonState extends State<DariXFilledButton> {
     setState(() {
       _isLoading = true; // Set the flag to true when the button is pressed
     });
-    // Simulate a long-running task (e.g. network request)
+
+    // Call the 'onPressed' method
     await widget.onPressed!();
+
+    // Set the flag back to false when the task is done
     setState(() {
-      _isLoading = false; // Set the flag back to false when the task is done
+      _isLoading = false;
     });
   }
 
+// Set the flag to true when the button is pressed
   void _onLongPressed() async {
     setState(() {
-      _isLoading = true; // Set the flag to true when the button is pressed
+      _isLoading = true;
     });
-    // Simulate a long-running task (e.g. network request)
+
+    // Call the callback function when pressed
     await widget.onLongPressed!();
+
+    // Set the flag back to false when the task is done
     setState(() {
-      _isLoading = false; // Set the flag back to false when the task is done
+      _isLoading = false;
     });
   }
 
@@ -70,6 +116,7 @@ class _DariXFilledButtonState extends State<DariXFilledButton> {
     return SizedBox(
       width: widget.width,
       height: widget.height,
+      // Show progress bar or text depending on the _isLoading flag value
       child: widget.isTonal!
           ? FilledButton.tonal(
               onPressed: _isLoading ? null : _onPressed,
@@ -95,6 +142,7 @@ class _DariXFilledButtonState extends State<DariXFilledButton> {
       height: widget.height,
       child: widget.isTonal!
           ? FilledButton.tonalIcon(
+              // Disable the button while loading
               onPressed: _isLoading ? null : _onPressed,
               onLongPress: _isLoading ? null : _onLongPressed,
               icon: _icon,
@@ -102,6 +150,7 @@ class _DariXFilledButtonState extends State<DariXFilledButton> {
               style: widget.buttonStyle,
             )
           : FilledButton.icon(
+              // Disable the button while loading
               onPressed: _isLoading ? null : _onPressed,
               onLongPress: _isLoading ? null : _onLongPressed,
               icon: _icon,
@@ -112,17 +161,20 @@ class _DariXFilledButtonState extends State<DariXFilledButton> {
   }
 
   Container _progressBar() {
-    final _progressBarColor = widget.progressBarColor ?? Theme.of(context).buttonTheme.colorScheme!.onBackground.withAlpha(120);
-    final _progressBarColorTonal = widget.progressBarColor ?? Theme.of(context).buttonTheme.colorScheme!.onBackground.withAlpha(180);
-    final _color = widget.isTonal! ? _progressBarColorTonal : _progressBarColor;
+    // Returns a Container widget
+    final _progressBarColor = widget.progressBarColor ?? Theme.of(context).buttonTheme.colorScheme!.onBackground.withAlpha(120); // Sets the progress bar color
+    final _progressBarColorTonal = widget.progressBarColor ?? Theme.of(context).buttonTheme.colorScheme!.onBackground.withAlpha(180); // Sets the tonal effect on the color making it slightly brighter
+    final _color = widget.isTonal! ? _progressBarColorTonal : _progressBarColor; // Determines which color should be used
     return Container(
-      height: widget.progressBarSize,
-      width: widget.progressBarSize,
+      height: widget.progressBarSize, // Determines the height of the progress bar
+      width: widget.progressBarSize, // Determines the width of the progress bar
       padding: const EdgeInsets.all(2.0),
-      child: widget.customProgressBar ?? CircularProgressIndicator(color: _color, strokeWidth: 3),
+      child: widget.customProgressBar ?? CircularProgressIndicator(color: _color, strokeWidth: 3), // Sets the progress bar as the child of the container
     );
   }
 
+  /// This method returns either a _simpleButton() widget if no icon was provided, or a _buttonWithIcon() widget otherwise.
+  /// At this point, we can assume that both methods exist and do not require further explanation.
   @override
   Widget build(BuildContext context) {
     return widget.icon == null ? _simpleButton() : _buttonWithIcon();
