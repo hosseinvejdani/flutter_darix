@@ -1,25 +1,33 @@
 import 'package:flutter/material.dart';
 
 class DariXElevatedButton extends StatefulWidget {
-  Function onPressed;
+  Function? onPressed;
+  Function? onLongPressed;
   String buttonText;
   double? width;
   double? height;
   Icon? icon;
+  ButtonStyle? style;
   double? progressBarSize;
   Color? progressBarColor;
+  Widget? customProgressBar;
 
   DariXElevatedButton({
     super.key,
-    required this.onPressed,
     required this.buttonText,
+    this.onPressed,
+    this.onLongPressed,
     this.width,
     this.height,
     this.icon,
+    this.style,
     this.progressBarSize,
     this.progressBarColor,
+    this.customProgressBar,
   }) {
     progressBarSize = progressBarSize ?? (icon != null ? icon!.size : 22);
+    onPressed = onPressed ?? () {};
+    onLongPressed = onLongPressed ?? () {};
   }
 
   @override
@@ -34,7 +42,18 @@ class _DariXElevatedButtonState extends State<DariXElevatedButton> {
       _isLoading = true; // Set the flag to true when the button is pressed
     });
     // Simulate a long-running task (e.g. network request)
-    await widget.onPressed();
+    await widget.onPressed!();
+    setState(() {
+      _isLoading = false; // Set the flag back to false when the task is done
+    });
+  }
+
+  void _onLongPressed() async {
+    setState(() {
+      _isLoading = true; // Set the flag to true when the button is pressed
+    });
+    // Simulate a long-running task (e.g. network request)
+    await widget.onLongPressed!();
     setState(() {
       _isLoading = false; // Set the flag back to false when the task is done
     });
@@ -46,7 +65,9 @@ class _DariXElevatedButtonState extends State<DariXElevatedButton> {
       height: widget.height,
       child: ElevatedButton(
         onPressed: _onPressed,
-        child: _isLoading ? _circularProgressBar() : Text(widget.buttonText),
+        onLongPress: _onLongPressed,
+        style: widget.style,
+        child: _isLoading ? _progressBar() : Text(widget.buttonText),
       ),
     );
   }
@@ -57,21 +78,24 @@ class _DariXElevatedButtonState extends State<DariXElevatedButton> {
       height: widget.height,
       child: ElevatedButton.icon(
         onPressed: _onPressed,
-        icon: _isLoading ? _circularProgressBar() : widget.icon!, // Use an Icon as icon when not loading
+        onLongPress: _onLongPressed,
+        icon: _isLoading ? _progressBar() : widget.icon!, // Use an Icon as icon when not loading
         label: Text(widget.buttonText),
+        style: widget.style,
       ),
     );
   }
 
-  Container _circularProgressBar() {
+  Widget _progressBar() {
     return Container(
       height: widget.progressBarSize,
       width: widget.progressBarSize,
       padding: const EdgeInsets.all(2.0),
-      child: CircularProgressIndicator(
-        color: widget.progressBarColor,
-        strokeWidth: 3,
-      ),
+      child: widget.customProgressBar ??
+          CircularProgressIndicator(
+            color: widget.progressBarColor,
+            strokeWidth: 3,
+          ),
     );
   }
 

@@ -3,23 +3,31 @@
 import 'package:flutter/material.dart';
 
 class DariXTextButton extends StatefulWidget {
-  Function onPressed;
+  Function? onPressed;
+  Function? onLongPressed;
   String buttonText;
   double? width;
   double? height;
+  ButtonStyle? style;
   double? progressBarLength;
   Color? progressBarColor;
+  Widget? customProgressBar;
 
   DariXTextButton({
     super.key,
-    required this.onPressed,
     required this.buttonText,
+    this.onPressed,
+    this.onLongPressed,
     this.width,
     this.height,
+    this.style,
     this.progressBarLength,
     this.progressBarColor,
+    this.customProgressBar,
   }) {
     progressBarLength = progressBarLength ?? 65;
+    onPressed = onPressed ?? () {};
+    onLongPressed = onLongPressed ?? () {};
   }
 
   @override
@@ -34,20 +42,32 @@ class _DariXTextButtonState extends State<DariXTextButton> {
       _isLoading = true; // Set the flag to true when the button is pressed
     });
     // Simulate a long-running task (e.g. network request)
-    await widget.onPressed();
+    await widget.onPressed!();
     setState(() {
       _isLoading = false; // Set the flag back to false when the task is done
     });
   }
 
-  Container _LinearProgressBar() {
+  void _onLongPressed() async {
+    setState(() {
+      _isLoading = true; // Set the flag to true when the button is pressed
+    });
+    // Simulate a long-running task (e.g. network request)
+    await widget.onLongPressed!();
+    setState(() {
+      _isLoading = false; // Set the flag back to false when the task is done
+    });
+  }
+
+  Container _progressBar() {
     return Container(
       width: widget.progressBarLength,
       padding: const EdgeInsets.all(2.0),
-      child: LinearProgressIndicator(
-        color: widget.progressBarColor,
-        minHeight: 3,
-      ),
+      child: widget.customProgressBar ??
+          LinearProgressIndicator(
+            color: widget.progressBarColor,
+            minHeight: 3,
+          ),
     );
   }
 
@@ -59,7 +79,9 @@ class _DariXTextButtonState extends State<DariXTextButton> {
       child: Center(
         child: TextButton(
           onPressed: _onPressed,
-          child: _isLoading ? _LinearProgressBar() : Text(widget.buttonText),
+          onLongPress: _onLongPressed,
+          style: widget.style,
+          child: _isLoading ? _progressBar() : Text(widget.buttonText),
         ),
       ),
     );

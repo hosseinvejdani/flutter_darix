@@ -1,27 +1,35 @@
 import 'package:flutter/material.dart';
 
 class DariXOutlinedButton extends StatefulWidget {
-  Function onPressed;
+  Function? onPressed;
+  Function? onLongPressed;
   String buttonText;
   double? width;
   double? height;
   Icon? icon;
+  ButtonStyle? style;
   double? progressBarSize;
   Color? progressBarColor;
   Color? sideColor;
+  Widget? customProgressBar;
 
   DariXOutlinedButton({
     Key? key,
-    required this.onPressed,
     required this.buttonText,
+    this.onPressed,
+    this.onLongPressed,
     this.width,
     this.height,
     this.icon,
+    this.style,
     this.progressBarSize,
     this.progressBarColor,
     this.sideColor,
+    this.customProgressBar,
   }) {
     progressBarSize = progressBarSize ?? (icon != null ? icon!.size : 22);
+    onPressed = onPressed ?? () {};
+    onLongPressed = onLongPressed ?? () {};
   }
 
   @override
@@ -36,7 +44,18 @@ class _DariXOutlinedButtonState extends State<DariXOutlinedButton> {
       _isLoading = true; // Set the flag to true when the button is pressed
     });
     // Simulate a long-running task (e.g. network request)
-    await widget.onPressed();
+    await widget.onPressed!();
+    setState(() {
+      _isLoading = false; // Set the flag back to false when the task is done
+    });
+  }
+
+  void _onLongPressed() async {
+    setState(() {
+      _isLoading = true; // Set the flag to true when the button is pressed
+    });
+    // Simulate a long-running task (e.g. network request)
+    await widget.onLongPressed!();
     setState(() {
       _isLoading = false; // Set the flag back to false when the task is done
     });
@@ -47,11 +66,13 @@ class _DariXOutlinedButtonState extends State<DariXOutlinedButton> {
       width: widget.width,
       height: widget.height,
       child: OutlinedButton(
-        style: OutlinedButton.styleFrom(
-          side: BorderSide(color: widget.sideColor ?? Theme.of(context).colorScheme.primary),
-        ),
+        style: widget.style ??
+            OutlinedButton.styleFrom(
+              side: BorderSide(color: widget.sideColor ?? Theme.of(context).colorScheme.primary),
+            ),
         onPressed: _onPressed,
-        child: _isLoading ? _circularProgressBar() : Text(widget.buttonText),
+        onLongPress: _onLongPressed,
+        child: _isLoading ? _progressBar() : Text(widget.buttonText),
       ),
     );
   }
@@ -61,24 +82,27 @@ class _DariXOutlinedButtonState extends State<DariXOutlinedButton> {
       width: widget.width,
       height: widget.height,
       child: OutlinedButton.icon(
-        style: OutlinedButton.styleFrom(
-          side: BorderSide(color: widget.sideColor ?? Theme.of(context).colorScheme.primary),
-        ),
+        style: widget.style ??
+            OutlinedButton.styleFrom(
+              side: BorderSide(color: widget.sideColor ?? Theme.of(context).colorScheme.primary),
+            ),
         onPressed: _onPressed,
-        icon: _isLoading ? _circularProgressBar() : widget.icon!, // Use an Icon as icon when not loading
+        onLongPress: _onLongPressed,
+        icon: _isLoading ? _progressBar() : widget.icon!, // Use an Icon as icon when not loading
         label: Text(widget.buttonText),
       ),
     );
   }
 
-  Container _circularProgressBar() {
+  Container _progressBar() {
     return Container(
       height: widget.progressBarSize,
       width: widget.progressBarSize,
       padding: const EdgeInsets.all(2.0),
-      child: const CircularProgressIndicator(
-        strokeWidth: 3,
-      ),
+      child: widget.customProgressBar ??
+          const CircularProgressIndicator(
+            strokeWidth: 3,
+          ),
     );
   }
 

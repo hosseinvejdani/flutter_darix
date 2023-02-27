@@ -1,27 +1,35 @@
 import 'package:flutter/material.dart';
 
 class DariXFilledButton extends StatefulWidget {
-  Function onPressed;
+  Function? onPressed;
+  Function? onLongPressed;
   String buttonText;
   double? width;
   double? height;
   Icon? icon;
+  ButtonStyle? style;
   double? progressBarSize;
   Color? progressBarColor;
   bool? isTonal;
+  Widget? customProgressBar;
 
   DariXFilledButton({
     super.key,
-    required this.onPressed,
     required this.buttonText,
+    this.onPressed,
+    this.onLongPressed,
     this.width,
     this.height,
     this.icon,
+    this.style,
     this.progressBarSize,
     this.progressBarColor,
     this.isTonal,
+    this.customProgressBar,
   }) {
     progressBarSize = progressBarSize ?? (icon != null ? icon!.size : 22);
+    onPressed = onPressed ?? () {};
+    onLongPressed = onLongPressed ?? () {};
     isTonal = isTonal ?? false;
   }
 
@@ -37,7 +45,18 @@ class _DariXFilledButtonState extends State<DariXFilledButton> {
       _isLoading = true; // Set the flag to true when the button is pressed
     });
     // Simulate a long-running task (e.g. network request)
-    await widget.onPressed();
+    await widget.onPressed!();
+    setState(() {
+      _isLoading = false; // Set the flag back to false when the task is done
+    });
+  }
+
+  void _onLongPressed() async {
+    setState(() {
+      _isLoading = true; // Set the flag to true when the button is pressed
+    });
+    // Simulate a long-running task (e.g. network request)
+    await widget.onLongPressed!();
     setState(() {
       _isLoading = false; // Set the flag back to false when the task is done
     });
@@ -50,34 +69,52 @@ class _DariXFilledButtonState extends State<DariXFilledButton> {
       child: widget.isTonal!
           ? FilledButton.tonal(
               onPressed: _onPressed,
-              child: _isLoading ? _circularProgressBar() : Text(widget.buttonText),
+              onLongPress: _onLongPressed,
+              style: widget.style,
+              child: _isLoading ? _progressBar() : Text(widget.buttonText),
             )
           : FilledButton(
               onPressed: _onPressed,
-              child: _isLoading ? _circularProgressBar() : Text(widget.buttonText),
+              onLongPress: _onLongPressed,
+              style: widget.style,
+              child: _isLoading ? _progressBar() : Text(widget.buttonText),
             ),
     );
   }
 
   Widget _buttonWithIcon() {
     // Use an Icon as icon when not loading
-    final _icon = _isLoading ? _circularProgressBar() : widget.icon!;
+    final _icon = _isLoading ? _progressBar() : widget.icon!;
     final _label = Text(widget.buttonText);
     return SizedBox(
       width: widget.width,
       height: widget.height,
-      child: widget.isTonal! ? FilledButton.tonalIcon(onPressed: _onPressed, icon: _icon, label: _label) : FilledButton.icon(onPressed: _onPressed, icon: _icon, label: _label),
+      child: widget.isTonal!
+          ? FilledButton.tonalIcon(
+              onPressed: _onPressed,
+              onLongPress: _onLongPressed,
+              icon: _icon,
+              label: _label,
+              style: widget.style,
+            )
+          : FilledButton.icon(
+              onPressed: _onPressed,
+              onLongPress: _onLongPressed,
+              icon: _icon,
+              label: _label,
+              style: widget.style,
+            ),
     );
   }
 
-  Container _circularProgressBar() {
+  Container _progressBar() {
     final _progressBarColor = widget.progressBarColor ?? Theme.of(context).colorScheme.onPrimary;
     final _color = widget.isTonal! ? Theme.of(context).buttonTheme.colorScheme!.onBackground.withAlpha(200) : _progressBarColor;
     return Container(
       height: widget.progressBarSize,
       width: widget.progressBarSize,
       padding: const EdgeInsets.all(2.0),
-      child: CircularProgressIndicator(color: _color, strokeWidth: 3),
+      child: widget.customProgressBar ?? CircularProgressIndicator(color: _color, strokeWidth: 3),
     );
   }
 
