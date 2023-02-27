@@ -31,3 +31,7 @@
 ## 0.0.8
 
 * make onPressed and onLongPressed nullable
+
+## 0.0.9
+
+* set dart min sdk to 2.19.0
