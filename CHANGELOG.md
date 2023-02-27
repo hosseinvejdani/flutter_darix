@@ -22,3 +22,8 @@
 
 * update fields for buttons
 * update example
+
+## 0.0.7
+
+* update fields for buttons
+* update example
