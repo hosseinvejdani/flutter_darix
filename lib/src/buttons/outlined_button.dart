@@ -74,31 +74,35 @@ class _DariXOutlinedButtonState extends State<DariXOutlinedButton> {
   bool _isLoading = false; // A flag to indicate whether the button is loading
 
   void _onPressed() async {
-    setState(() {
-      _isLoading = true; // Set the flag to true when the button is pressed
-    });
+    try {
+      setState(() {
+        _isLoading = true; // Set the flag to true when the button is pressed
+      });
 
-    // This function runs once the onPressed() event has been triggered //
-    await widget.onPressed!();
+      // This function runs once the onPressed() event has been triggered //
+      await widget.onPressed!();
 
-    if (_isLoading == true) {
       setState(() {
         _isLoading = false; // Set the flag back to false when the task is done
       });
+    } on Exception catch (e) {
+      // TODO
     }
   }
 
   // This function runs once the onLongPressed() event has been triggered //
   void _onLongPressed() async {
-    setState(() {
-      _isLoading = true; // Set the flag to true when the button is pressed
-    });
+    try {
+      setState(() {
+        _isLoading = true; // Set the flag to true when the button is pressed
+      });
 
-    await widget.onLongPressed!();
-    if (_isLoading == true) {
+      await widget.onLongPressed!();
       setState(() {
         _isLoading = false; // Set the flag back to false when the task is done
       });
+    } on Exception catch (e) {
+      // TODO
     }
   }
 
@@ -148,14 +152,6 @@ class _DariXOutlinedButtonState extends State<DariXOutlinedButton> {
             strokeWidth: 3,
           ),
     );
-  }
-
-  @override
-  void deactivate() {
-    setState(() {
-      _isLoading = false; // Set the flag back to false when the task is done
-    });
-    super.deactivate();
   }
 
   @override

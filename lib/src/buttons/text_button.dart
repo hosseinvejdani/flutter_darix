@@ -44,27 +44,31 @@ class _DariXTextButtonState extends State<DariXTextButton> {
   bool _isLoading = false; // A flag to indicate whether the button is loading
 
   void _onPressed() async {
-    setState(() {
-      _isLoading = true; // Set the flag to true when the button is pressed
-    });
+    try {
+      setState(() {
+        _isLoading = true; // Set the flag to true when the button is pressed
+      });
 
-    await widget.onPressed!();
-    if (_isLoading == true) {
+      await widget.onPressed!();
       setState(() {
         _isLoading = false; // Set the flag back to false when the task is done
       });
+    } on Exception catch (e) {
+      // TODO
     }
   }
 
   void _onLongPressed() async {
-    setState(() {
-      _isLoading = true; // Set the flag to true when the button is pressed
-    });
-    await widget.onLongPressed!();
-    if (_isLoading == true) {
+    try {
+      setState(() {
+        _isLoading = true; // Set the flag to true when the button is pressed
+      });
+      await widget.onLongPressed!();
       setState(() {
         _isLoading = false; // Set the flag back to false when the task is done
       });
+    } on Exception catch (e) {
+      // TODO
     }
   }
 
@@ -84,14 +88,6 @@ class _DariXTextButtonState extends State<DariXTextButton> {
             minHeight: 3,
           ),
     );
-  }
-
-  @override
-  void deactivate() {
-    setState(() {
-      _isLoading = false; // Set the flag back to false when the task is done
-    });
-    super.deactivate();
   }
 
   ///This function is used to build the button. It returns a SizedBox with width and height from the widget, and has a TextButton centered inside it. The onPressed and onLongPress properties of the TextButton are set to the corresponding functions if the flag _isLoading is not set. The Text Button's child is either the loading bar, or the text that is set in the buttonText property.

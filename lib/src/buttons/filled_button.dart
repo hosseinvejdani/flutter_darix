@@ -78,33 +78,37 @@ class _DariXFilledButtonState extends State<DariXFilledButton> {
   bool _isLoading = false; // A flag to indicate whether the button is loading
 
   void _onPressed() async {
-    setState(() {
-      _isLoading = true; // Set the flag to true when the button is pressed
-    });
+    try {
+      setState(() {
+        _isLoading = true; // Set the flag to true when the button is pressed
+      });
 
-    // Call the 'onPressed' method
-    await widget.onPressed!();
+      // Call the 'onPressed' method
+      await widget.onPressed!();
 
-    if (_isLoading == true) {
       setState(() {
         _isLoading = false; // Set the flag back to false when the task is done
       });
+    } on Exception catch (e) {
+      // TODO
     }
   }
 
 // Set the flag to true when the button is pressed
   void _onLongPressed() async {
-    setState(() {
-      _isLoading = true;
-    });
+    try {
+      setState(() {
+        _isLoading = true;
+      });
 
-    // Call the callback function when pressed
-    await widget.onLongPressed!();
+      // Call the callback function when pressed
+      await widget.onLongPressed!();
 
-    if (_isLoading == true) {
       setState(() {
         _isLoading = false; // Set the flag back to false when the task is done
       });
+    } on Exception catch (e) {
+      // TODO
     }
   }
 
@@ -167,14 +171,6 @@ class _DariXFilledButtonState extends State<DariXFilledButton> {
       padding: const EdgeInsets.all(2.0),
       child: widget.customProgressBar ?? CircularProgressIndicator(color: _color, strokeWidth: 3), // Sets the progress bar as the child of the container
     );
-  }
-
-  @override
-  void deactivate() {
-    setState(() {
-      _isLoading = false; // Set the flag back to false when the task is done
-    });
-    super.deactivate();
   }
 
   /// This method returns either a _simpleButton() widget if no icon was provided, or a _buttonWithIcon() widget otherwise.

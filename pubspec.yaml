@@ -1,6 +1,6 @@
 name: flutter_darix
 description: A Simple Flutter package that help to create buttons with inner progres-bar indicator.
-version: 0.1.1
+version: 0.1.2
 homepage: https://github.com/hosseinvejdani/flutter_darix
 
 environment:

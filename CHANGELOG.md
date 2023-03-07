@@ -43,3 +43,7 @@
 ## 0.1.1
 
 * solved lifecycle issue
+
+## 0.1.2
+
+* solved lifecycle issue with try-catch block
