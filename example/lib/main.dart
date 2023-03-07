@@ -52,7 +52,8 @@ class _MyHomePageState extends State<MyHomePage> {
             const SizedBox(height: 20),
             _tonalFilledButtonExamples(),
             const SizedBox(height: 20),
-            _outlinedButtonExamples()
+            _outlinedButtonExamples(),
+            const SizedBox(height: 20),
           ],
         ),
       ),

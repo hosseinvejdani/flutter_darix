@@ -81,9 +81,11 @@ class _DariXOutlinedButtonState extends State<DariXOutlinedButton> {
     // This function runs once the onPressed() event has been triggered //
     await widget.onPressed!();
 
-    setState(() {
-      _isLoading = false; // Set the flag back to false when the task is done
-    });
+    if (_isLoading == true) {
+      setState(() {
+        _isLoading = false; // Set the flag back to false when the task is done
+      });
+    }
   }
 
   // This function runs once the onLongPressed() event has been triggered //
@@ -93,9 +95,11 @@ class _DariXOutlinedButtonState extends State<DariXOutlinedButton> {
     });
 
     await widget.onLongPressed!();
-    setState(() {
-      _isLoading = false; // Set the flag back to false when the task is done
-    });
+    if (_isLoading == true) {
+      setState(() {
+        _isLoading = false; // Set the flag back to false when the task is done
+      });
+    }
   }
 
   ///This function returns a SizedBox widget with an OutlinedButton as its child. The button style and size is based off parameters that can be set via the State's widget variable. It also has an onPressed property for handling the press action and an onLongPress property for handling long pressing. Its text property is dependent on loading status and either provides custom progress bar or button text style based on the provided parameter from the widget variable.
@@ -144,6 +148,14 @@ class _DariXOutlinedButtonState extends State<DariXOutlinedButton> {
             strokeWidth: 3,
           ),
     );
+  }
+
+  @override
+  void dispose() {
+    setState(() {
+      _isLoading = false; // Set the flag back to false when the task is done
+    });
+    super.dispose();
   }
 
   @override

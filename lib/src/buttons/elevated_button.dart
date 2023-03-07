@@ -88,9 +88,12 @@ class _DariXElevatedButtonState extends State<DariXElevatedButton> {
     });
 
     await widget.onPressed!();
-    setState(() {
-      _isLoading = false; // Set the flag back to false when the task is done
-    });
+
+    if (_isLoading == true) {
+      setState(() {
+        _isLoading = false; // Set the flag back to false when the task is done
+      });
+    }
   }
 
   void _onLongPressed() async {
@@ -99,9 +102,12 @@ class _DariXElevatedButtonState extends State<DariXElevatedButton> {
     });
 
     await widget.onLongPressed!();
-    setState(() {
-      _isLoading = false; // Set the flag back to false when the task is done
-    });
+
+    if (_isLoading == true) {
+      setState(() {
+        _isLoading = false; // Set the flag back to false when the task is done
+      });
+    }
   }
 
   Widget _simpleButton() {
@@ -152,6 +158,14 @@ class _DariXElevatedButtonState extends State<DariXElevatedButton> {
             strokeWidth: 3,
           ),
     );
+  }
+
+  @override
+  void dispose() {
+    setState(() {
+      _isLoading = false; // Set the flag back to false when the task is done
+    });
+    super.dispose();
   }
 
   @override

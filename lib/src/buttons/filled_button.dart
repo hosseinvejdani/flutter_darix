@@ -85,10 +85,11 @@ class _DariXFilledButtonState extends State<DariXFilledButton> {
     // Call the 'onPressed' method
     await widget.onPressed!();
 
-    // Set the flag back to false when the task is done
-    setState(() {
-      _isLoading = false;
-    });
+    if (_isLoading == true) {
+      setState(() {
+        _isLoading = false; // Set the flag back to false when the task is done
+      });
+    }
   }
 
 // Set the flag to true when the button is pressed
@@ -100,10 +101,11 @@ class _DariXFilledButtonState extends State<DariXFilledButton> {
     // Call the callback function when pressed
     await widget.onLongPressed!();
 
-    // Set the flag back to false when the task is done
-    setState(() {
-      _isLoading = false;
-    });
+    if (_isLoading == true) {
+      setState(() {
+        _isLoading = false; // Set the flag back to false when the task is done
+      });
+    }
   }
 
   Widget _simpleButton() {
@@ -165,6 +167,14 @@ class _DariXFilledButtonState extends State<DariXFilledButton> {
       padding: const EdgeInsets.all(2.0),
       child: widget.customProgressBar ?? CircularProgressIndicator(color: _color, strokeWidth: 3), // Sets the progress bar as the child of the container
     );
+  }
+
+  @override
+  void dispose() {
+    setState(() {
+      _isLoading = false; // Set the flag back to false when the task is done
+    });
+    super.dispose();
   }
 
   /// This method returns either a _simpleButton() widget if no icon was provided, or a _buttonWithIcon() widget otherwise.

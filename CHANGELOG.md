@@ -31,3 +31,7 @@
 ## 0.0.8
 
 * make onPressed and onLongPressed nullable
+
+## 0.0.9
+
+* fixed lifecycle issue
