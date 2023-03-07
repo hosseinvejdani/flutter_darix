@@ -13,42 +13,42 @@ import 'package:flutter/material.dart';
 ///  Finally, the widget uses either _simpleButton() or _buttonWithIcon() depending on the availability of the icon.
 class DariXFilledButton extends StatefulWidget {
 // String used to set the text shown on the button
-  String buttonText;
+  final String buttonText;
 
 // Used to style the text
-  TextStyle? textStyle;
+  final TextStyle? textStyle;
 
 // Function invoked when the user taps the button
-  Function? onPressed;
+  final Function? onPressed;
 
 // Function invoked when user holds down the button
-  Function? onLongPressed;
+  final Function? onLongPressed;
 
 // Used to set the width of the button
-  double? width;
+  final double? width;
 
 // Used to set the height of the button
-  double? height;
+  final double? height;
 
 // Icon shown on the button
-  Icon? icon;
+  final Icon? icon;
 
 // Button appearance can be changed by setting this
-  ButtonStyle? buttonStyle;
+  final ButtonStyle? buttonStyle;
 
 // Used to set the size of the progress bar
-  double? progressBarSize;
+  final double? progressBarSize;
 
 // Used to set the color of the progress bar
-  Color? progressBarColor;
+  final Color? progressBarColor;
 
 // Used to indicate if the progress bar is tonal
-  bool? isTonal;
+  final bool? isTonal;
 
 // Used to customize the progress bar as a widget
-  Widget? customProgressBar;
+  final Widget? customProgressBar;
 
-  DariXFilledButton({
+  const DariXFilledButton({
     super.key,
     required this.buttonText,
     this.textStyle,
@@ -60,15 +60,9 @@ class DariXFilledButton extends StatefulWidget {
     this.buttonStyle,
     this.progressBarSize,
     this.progressBarColor,
-    this.isTonal,
+    this.isTonal = false,
     this.customProgressBar,
-  }) {
-    // Set the progress bar size
-    progressBarSize = progressBarSize ?? (icon != null ? icon!.size : 22);
-
-    // Set if it is tonal or not
-    isTonal = isTonal ?? false;
-  }
+  });
 
   @override
   State<DariXFilledButton> createState() => _DariXFilledButtonState();
@@ -89,7 +83,7 @@ class _DariXFilledButtonState extends State<DariXFilledButton> {
       setState(() {
         _isLoading = false; // Set the flag back to false when the task is done
       });
-    } on Exception catch (e) {
+    } on Exception catch (_) {
       // TODO
     }
   }
@@ -107,7 +101,7 @@ class _DariXFilledButtonState extends State<DariXFilledButton> {
       setState(() {
         _isLoading = false; // Set the flag back to false when the task is done
       });
-    } on Exception catch (e) {
+    } on Exception catch (_) {
       // TODO
     }
   }
@@ -161,13 +155,15 @@ class _DariXFilledButtonState extends State<DariXFilledButton> {
   }
 
   Container _progressBar() {
+    final _progressBarSize = widget.progressBarSize ?? (widget.icon != null ? widget.icon!.size : 22);
+
     // Returns a Container widget
     final _progressBarColor = widget.progressBarColor ?? Theme.of(context).buttonTheme.colorScheme!.onBackground.withAlpha(120); // Sets the progress bar color
     final _progressBarColorTonal = widget.progressBarColor ?? Theme.of(context).buttonTheme.colorScheme!.onBackground.withAlpha(180); // Sets the tonal effect on the color making it slightly brighter
     final _color = widget.isTonal! ? _progressBarColorTonal : _progressBarColor; // Determines which color should be used
     return Container(
-      height: widget.progressBarSize, // Determines the height of the progress bar
-      width: widget.progressBarSize, // Determines the width of the progress bar
+      height: _progressBarSize, // Determines the height of the progress bar
+      width: _progressBarSize, // Determines the width of the progress bar
       padding: const EdgeInsets.all(2.0),
       child: widget.customProgressBar ?? CircularProgressIndicator(color: _color, strokeWidth: 3), // Sets the progress bar as the child of the container
     );

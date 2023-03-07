@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable, no_leading_underscores_for_local_identifiers
+
 import 'package:flutter/material.dart';
 
 ///This code defines a custom ElevatedButton widget for the Flutter framework.
@@ -25,39 +27,39 @@ import 'package:flutter/material.dart';
 /// [customProgressBar] is an optional Widget object for displaying a custom progress bar on the button if desired.
 class DariXElevatedButton extends StatefulWidget {
 // String to be displayed on the button
-  String buttonText;
+  final String buttonText;
 
 // Text style object used to change font size and colour, etc.
-  TextStyle? textStyle;
+  final TextStyle? textStyle;
 
 // Function called when button is pressed
-  Function? onPressed;
+  final Function? onPressed;
 
 // Function called when button is long-pressed
-  Function? onLongPressed;
+  final Function? onLongPressed;
 
 // Width of the button
-  double? width;
+  final double? width;
 
 // Height of the button
-  double? height;
+  final double? height;
 
 // Icon to be displayed on the button in form of an image
-  Icon? icon;
+  final Icon? icon;
 
 // Button style object used to align and style the element's children
-  ButtonStyle? buttonStyle;
+  final ButtonStyle? buttonStyle;
 
 // Size of the progress bar attached to the button
-  double? progressBarSize;
+  final double? progressBarSize;
 
 // Color changes the color of the ProgressBar attached to the button
-  Color? progressBarColor;
+  final Color? progressBarColor;
 
 // Widget for customizing ProgressBar
-  Widget? customProgressBar;
+  final Widget? customProgressBar;
 
-  DariXElevatedButton({
+  const DariXElevatedButton({
     super.key,
     required this.buttonText,
     this.textStyle,
@@ -70,10 +72,7 @@ class DariXElevatedButton extends StatefulWidget {
     this.progressBarSize,
     this.progressBarColor,
     this.customProgressBar,
-  }) {
-    // Assign a default value to progressBarSize in case no other value is assigned
-    progressBarSize = progressBarSize ?? (icon != null ? icon!.size : 22);
-  }
+  });
 
   @override
   State<DariXElevatedButton> createState() => _DariXElevatedButtonState();
@@ -93,7 +92,7 @@ class _DariXElevatedButtonState extends State<DariXElevatedButton> {
       setState(() {
         _isLoading = false; // Set the flag back to false when the task is done
       });
-    } on Exception catch (e) {
+    } on Exception catch (_) {
       // TODO
     }
   }
@@ -109,7 +108,7 @@ class _DariXElevatedButtonState extends State<DariXElevatedButton> {
       setState(() {
         _isLoading = false; // Set the flag back to false when the task is done
       });
-    } on Exception catch (e) {
+    } on Exception catch (_) {
       // TODO
     }
   }
@@ -148,10 +147,12 @@ class _DariXElevatedButtonState extends State<DariXElevatedButton> {
 
 // Returns a Container with the CircularProgressIndicator or the custom progress bar
   Widget _progressBar() {
+    final _progressBarSize = widget.progressBarSize ?? (widget.icon != null ? widget.icon!.size : 22);
+
     return Container(
       // Sets the height and width of the progress bar
-      height: widget.progressBarSize,
-      width: widget.progressBarSize,
+      height: _progressBarSize,
+      width: _progressBarSize,
       padding: const EdgeInsets.all(2.0),
 
       // Checks whether the customProgressBar has been defined

@@ -1,3 +1,5 @@
+// ignore_for_file: no_leading_underscores_for_local_identifiers
+
 import 'package:flutter/material.dart';
 
 /// This code defines a class called DariXOutlinedButton which is a custom button widget for the Flutter framework.
@@ -12,43 +14,43 @@ import 'package:flutter/material.dart';
 /// either a simple button or a button with an icon depending on what parameters were passed in.
 class DariXOutlinedButton extends StatefulWidget {
   /// The text written on the button.
-  String buttonText;
+  final String buttonText;
 
   /// The style used for the text written on the button.
-  TextStyle? textStyle;
+  final TextStyle? textStyle;
 
   /// Called when the user tapped and released the button quickly.
-  Function? onPressed;
+  final Function? onPressed;
 
   /// Called when the user presses down on the button and holds it.
-  Function? onLongPressed;
+  final Function? onLongPressed;
 
   /// The width of the button.
-  double? width;
+  final double? width;
 
   /// The height of the button.
-  double? height;
+  final double? height;
 
   /// An icon to show on the button.
-  Icon? icon;
+  final Icon? icon;
 
   /// Defines the visual appearance of the button.
-  ButtonStyle? buttonStyle;
+  final ButtonStyle? buttonStyle;
 
   /// The size of the progress bar inside the button.
-  double? progressBarSize;
+  final double? progressBarSize;
 
   /// The color of the progress bar.
-  Color? progressBarColor;
+  final Color? progressBarColor;
 
   /// The color on either side of the progress bar.
-  Color? sideColor;
+  final Color? sideColor;
 
   /// A custom widget to use as the progress bar instead of a linear one.
-  Widget? customProgressBar;
+  final Widget? customProgressBar;
 
-  DariXOutlinedButton({
-    Key? key,
+  const DariXOutlinedButton({
+    super.key,
     required this.buttonText,
     this.textStyle,
     this.onPressed,
@@ -61,10 +63,7 @@ class DariXOutlinedButton extends StatefulWidget {
     this.progressBarColor,
     this.sideColor,
     this.customProgressBar,
-  }) {
-    // Set the size of the progress bar if not provided
-    progressBarSize = progressBarSize ?? (icon != null ? icon!.size : 22);
-  }
+  });
 
   @override
   State<DariXOutlinedButton> createState() => _DariXOutlinedButtonState();
@@ -85,7 +84,7 @@ class _DariXOutlinedButtonState extends State<DariXOutlinedButton> {
       setState(() {
         _isLoading = false; // Set the flag back to false when the task is done
       });
-    } on Exception catch (e) {
+    } on Exception catch (_) {
       // TODO
     }
   }
@@ -101,7 +100,7 @@ class _DariXOutlinedButtonState extends State<DariXOutlinedButton> {
       setState(() {
         _isLoading = false; // Set the flag back to false when the task is done
       });
-    } on Exception catch (e) {
+    } on Exception catch (_) {
       // TODO
     }
   }
@@ -143,9 +142,11 @@ class _DariXOutlinedButtonState extends State<DariXOutlinedButton> {
 
   ///This function is responsible for returning the custom display elements of the button when the loading state is active, using the parameters passed along the widget variable. It is a Container widget with the CircularProgressIndicator set as child by default. However, you can use a custom ProgressBar if you prefer.
   Container _progressBar() {
+    final _progressBarSize = widget.progressBarSize ?? (widget.icon != null ? widget.icon!.size : 22);
+
     return Container(
-      height: widget.progressBarSize,
-      width: widget.progressBarSize,
+      height: _progressBarSize,
+      width: _progressBarSize,
       padding: const EdgeInsets.all(2.0),
       child: widget.customProgressBar ??
           const CircularProgressIndicator(

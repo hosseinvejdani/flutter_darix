@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_names, must_be_immutable, no_leading_underscores_for_local_identifiers
 
 import 'package:flutter/material.dart';
 
@@ -8,18 +8,18 @@ import 'package:flutter/material.dart';
 ///
 ///The _onPressed and _onLongPress methods handle the execution of the task tied to the pressing of the button and triggering the on-screen progress bar if present. Finally, the _progressBar method builds the correct progress bar based on the given configuration.
 class DariXTextButton extends StatefulWidget {
-  String buttonText; // Text for the button
-  TextStyle? textStyle; // Style for the text
-  Function? onPressed; // Function to perform when the button is pressed
-  Function? onLongPressed; // Function to perform when the button is long-pressed
-  double? width; // Widht of the button
-  double? height; // Height of the button
-  ButtonStyle? buttonStyle; // Style of the button
-  double? progressBarLength; // Length of the progress bar, if present
-  Color? progressBarColor; // Color of the progress bar, if present
-  Widget? customProgressBar; // Custom progress bar widget, if specified
+  final String buttonText; // Text for the button
+  final TextStyle? textStyle; // Style for the text
+  final Function? onPressed; // Function to perform when the button is pressed
+  final Function? onLongPressed; // Function to perform when the button is long-pressed
+  final double? width; // Widht of the button
+  final double? height; // Height of the button
+  final ButtonStyle? buttonStyle; // Style of the button
+  final double? progressBarLength; // Length of the progress bar, if present
+  final Color? progressBarColor; // Color of the progress bar, if present
+  final Widget? customProgressBar; // Custom progress bar widget, if specified
 
-  DariXTextButton({
+  const DariXTextButton({
     super.key,
     required this.buttonText,
     this.textStyle,
@@ -31,10 +31,7 @@ class DariXTextButton extends StatefulWidget {
     this.progressBarLength,
     this.progressBarColor,
     this.customProgressBar,
-  }) {
-    // Sets a default value of 65 for the progressBarLength variable
-    progressBarLength = progressBarLength ?? 65;
-  }
+  });
 
   @override
   State<DariXTextButton> createState() => _DariXTextButtonState();
@@ -53,7 +50,7 @@ class _DariXTextButtonState extends State<DariXTextButton> {
       setState(() {
         _isLoading = false; // Set the flag back to false when the task is done
       });
-    } on Exception catch (e) {
+    } on Exception catch (_) {
       // TODO
     }
   }
@@ -67,17 +64,18 @@ class _DariXTextButtonState extends State<DariXTextButton> {
       setState(() {
         _isLoading = false; // Set the flag back to false when the task is done
       });
-    } on Exception catch (e) {
+    } on Exception catch (_) {
       // TODO
     }
   }
 
 //Function that handles generating progress bars for Widgets
   Container _progressBar() {
+    final _progressBarLength = widget.progressBarLength ?? 65;
     //Returns a Container widget
     return Container(
       //Sets the width of the progress bar to the length passed in through widget property
-      width: widget.progressBarLength,
+      width: _progressBarLength,
       //Padding to make sure all views have adequate spacing
       padding: const EdgeInsets.all(2.0),
       //Child of the container is either a custom progress bar issued as an argument or
