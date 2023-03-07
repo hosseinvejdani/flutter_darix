@@ -87,11 +87,11 @@ class _DariXTextButtonState extends State<DariXTextButton> {
   }
 
   @override
-  void dispose() {
+  void deactivate() {
     setState(() {
       _isLoading = false; // Set the flag back to false when the task is done
     });
-    super.dispose();
+    super.deactivate();
   }
 
   ///This function is used to build the button. It returns a SizedBox with width and height from the widget, and has a TextButton centered inside it. The onPressed and onLongPress properties of the TextButton are set to the corresponding functions if the flag _isLoading is not set. The Text Button's child is either the loading bar, or the text that is set in the buttonText property.

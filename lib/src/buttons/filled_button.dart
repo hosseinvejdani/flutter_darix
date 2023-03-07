@@ -170,11 +170,11 @@ class _DariXFilledButtonState extends State<DariXFilledButton> {
   }
 
   @override
-  void dispose() {
+  void deactivate() {
     setState(() {
       _isLoading = false; // Set the flag back to false when the task is done
     });
-    super.dispose();
+    super.deactivate();
   }
 
   /// This method returns either a _simpleButton() widget if no icon was provided, or a _buttonWithIcon() widget otherwise.

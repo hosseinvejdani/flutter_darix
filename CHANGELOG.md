@@ -39,3 +39,7 @@
 ## 0.1.0
 
 * solved lifecycle issue
+
+## 0.1.1
+
+* solved lifecycle issue

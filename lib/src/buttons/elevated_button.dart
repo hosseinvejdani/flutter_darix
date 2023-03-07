@@ -161,11 +161,11 @@ class _DariXElevatedButtonState extends State<DariXElevatedButton> {
   }
 
   @override
-  void dispose() {
+  void deactivate() {
     setState(() {
       _isLoading = false; // Set the flag back to false when the task is done
     });
-    super.dispose();
+    super.deactivate();
   }
 
   @override
