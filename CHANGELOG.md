@@ -47,3 +47,7 @@
 ## 0.1.2
 
 * solved lifecycle issue with try-catch block
+
+## 0.1.3
+
+* solved lifecycle issue!

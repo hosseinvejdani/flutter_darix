@@ -80,6 +80,7 @@ class DariXElevatedButton extends StatefulWidget {
 
 class _DariXElevatedButtonState extends State<DariXElevatedButton> {
   bool _isLoading = false; // A flag to indicate whether the button is loading
+  bool _disposed = false;
 
   void _onPressed() async {
     try {
@@ -89,9 +90,11 @@ class _DariXElevatedButtonState extends State<DariXElevatedButton> {
 
       await widget.onPressed!();
 
-      setState(() {
-        _isLoading = false; // Set the flag back to false when the task is done
-      });
+      if (!_disposed) {
+        setState(() {
+          _isLoading = false; // Set the flag back to false when the task is done
+        });
+      }
     } on Exception catch (_) {
       // TODO
     }
@@ -105,9 +108,11 @@ class _DariXElevatedButtonState extends State<DariXElevatedButton> {
 
       await widget.onLongPressed!();
 
-      setState(() {
-        _isLoading = false; // Set the flag back to false when the task is done
-      });
+      if (!_disposed) {
+        setState(() {
+          _isLoading = false; // Set the flag back to false when the task is done
+        });
+      }
     } on Exception catch (_) {
       // TODO
     }
@@ -163,6 +168,12 @@ class _DariXElevatedButtonState extends State<DariXElevatedButton> {
             strokeWidth: 3,
           ),
     );
+  }
+
+  @override
+  void deactivate() {
+    _disposed = false;
+    super.deactivate();
   }
 
   @override

@@ -71,6 +71,7 @@ class DariXOutlinedButton extends StatefulWidget {
 
 class _DariXOutlinedButtonState extends State<DariXOutlinedButton> {
   bool _isLoading = false; // A flag to indicate whether the button is loading
+  bool _disposed = false;
 
   void _onPressed() async {
     try {
@@ -81,9 +82,11 @@ class _DariXOutlinedButtonState extends State<DariXOutlinedButton> {
       // This function runs once the onPressed() event has been triggered //
       await widget.onPressed!();
 
-      setState(() {
-        _isLoading = false; // Set the flag back to false when the task is done
-      });
+      if (!_disposed) {
+        setState(() {
+          _isLoading = false; // Set the flag back to false when the task is done
+        });
+      }
     } on Exception catch (_) {
       // TODO
     }
@@ -97,9 +100,11 @@ class _DariXOutlinedButtonState extends State<DariXOutlinedButton> {
       });
 
       await widget.onLongPressed!();
-      setState(() {
-        _isLoading = false; // Set the flag back to false when the task is done
-      });
+      if (!_disposed) {
+        setState(() {
+          _isLoading = false; // Set the flag back to false when the task is done
+        });
+      }
     } on Exception catch (_) {
       // TODO
     }
@@ -153,6 +158,12 @@ class _DariXOutlinedButtonState extends State<DariXOutlinedButton> {
             strokeWidth: 3,
           ),
     );
+  }
+
+  @override
+  void deactivate() {
+    _disposed = false;
+    super.deactivate();
   }
 
   @override
