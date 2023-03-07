@@ -176,7 +176,7 @@ class _DariXFilledButtonState extends State<DariXFilledButton> {
 
   @override
   void deactivate() {
-    _disposed = false;
+    _disposed = true;
     super.deactivate();
   }
 

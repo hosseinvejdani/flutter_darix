@@ -172,7 +172,7 @@ class _DariXElevatedButtonState extends State<DariXElevatedButton> {
 
   @override
   void deactivate() {
-    _disposed = false;
+    _disposed = true;
     super.deactivate();
   }
 

@@ -51,3 +51,7 @@
 ## 0.1.3
 
 * solved lifecycle issue!
+
+## 0.1.4
+
+* solved lifecycle issue!

@@ -95,7 +95,7 @@ class _DariXTextButtonState extends State<DariXTextButton> {
 
   @override
   void deactivate() {
-    _disposed = false;
+    _disposed = true;
     super.deactivate();
   }
 
