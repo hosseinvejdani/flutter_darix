@@ -35,3 +35,7 @@
 ## 0.0.9
 
 * set dart min sdk to 2.19.0
+
+## 0.1.0
+
+* solved lifecycle issue
