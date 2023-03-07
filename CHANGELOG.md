@@ -34,4 +34,4 @@
 
 ## 0.0.9
 
-* fixed lifecycle issue
+* set dart min sdk to 2.19.0
