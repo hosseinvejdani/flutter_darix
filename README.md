@@ -19,7 +19,8 @@ You can pass an icon for ElevatedButton, FilledButton, OutlinedButton optionaly.
 
 ## Preview
 
-![Flutter Buttons with progressbar indicators](https://github.com/hosseinvejdani/flutter_darix/blob/master/assets/buttons.png)
+![demo-darix](https://github.com/hosseinvejdani/flutter_darix/assets/18458798/be0e05d7-cb6e-4ca3-8010-3e7538ed92bc)
+
 
 ## Getting started
 
