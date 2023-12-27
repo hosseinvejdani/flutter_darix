@@ -55,3 +55,7 @@
 ## 0.1.4
 
 * solved lifecycle issue!
+
+## 1.0.0
+
+* updated dependencies, example folder and added new preview gif images
